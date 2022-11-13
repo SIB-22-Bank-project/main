@@ -5,7 +5,7 @@
 	ID / Role / Password / PasswordToken / Name / DateOfBirth / IIN / Email / Mobile / City / Address / AccountNumber / AccountScore
 	2) Юзвер: Кредит, Кол-во моней, Сколько и когда платить
 	3) Манагер: просмотр всей инфы про юзвера с рекдактированием
-	4) 
+	4) Админ: забанить всех нахер
 ## Инфраструктура 
 Django 
 Postgre 

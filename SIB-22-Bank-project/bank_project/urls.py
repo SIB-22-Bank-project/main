@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# Добавление видов
+from core.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Добавление url
+    path('', CoreView.as_view(), name='home'),
+    
 ]

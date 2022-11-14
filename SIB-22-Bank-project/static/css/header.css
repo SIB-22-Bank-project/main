@@ -8,9 +8,10 @@
     justify-content: space-between;
 }
 .logo {
-    font-weight: bold;
+    font-weight: 600;
     font-size: 1.2rem;
     cursor: default;
+    color: var(--orange-web);
 }
 .navbar-links {
     display: flex;

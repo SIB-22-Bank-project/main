@@ -15,11 +15,11 @@ class Deposite(models.Model):
         decimal_places=2,
         max_digits=12
     )
-    balance_after_transaction = models.DecimalField(
+    balance_after_deposite = models.DecimalField(
         decimal_places=2,
         max_digits=12
     )
-    transaction_type = models.PositiveSmallIntegerField(
+    deposite_type = models.PositiveSmallIntegerField(
         choices=DEPOSITE_TYPE_CHOICES
     )
     timestamp = models.DateTimeField(auto_now_add=True)

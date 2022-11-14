@@ -6,9 +6,9 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import CreateView, ListView
 
-from deposite.deposite import DEPOSIT, WITHDRAWAL
+from deposite.deposite import DEPOSITE, WITHDRAWAL
 from deposite.forms import (
-    DepositForm,
+    DepositeForm,
     DepositeDateRangeForm,
     WithdrawForm,
 )
@@ -71,24 +71,24 @@ class DepositeCreateMixin(LoginRequiredMixin, CreateView):
         return context
 
 
-class DepositMoneyView(DepositeCreateMixin):
-    form_class = DepositForm
-    title = 'Deposit Money to Your Account'
+class DepositeMoneyView(DepositeCreateMixin):
+    form_class = DepositeForm
+    title = 'Deposite Money to Your Account'
 
     def get_initial(self):
-        initial = {'deposite_type': DEPOSIT}
+        initial = {'deposite_type': DEPOSITE}
         return initial
 
     def form_valid(self, form):
         amount = form.cleaned_data.get('amount')
         account = self.request.user.account
 
-        if not account.initial_deposit_date:
+        if not account.initial_deposite_date:
             now = timezone.now()
             next_interest_month = int(
                 12 / account.account_type.interest_calculation_per_year
             )
-            account.initial_deposit_date = now
+            account.initial_deposite_date = now
             account.interest_start_date = (
                 now + relativedelta(
                     months=+next_interest_month
@@ -98,7 +98,7 @@ class DepositMoneyView(DepositeCreateMixin):
         account.balance += amount
         account.save(
             update_fields=[
-                'initial_deposit_date',
+                'initial_deposite_date',
                 'balance',
                 'interest_start_date'
             ]

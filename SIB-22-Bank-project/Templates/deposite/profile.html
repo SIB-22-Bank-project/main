@@ -27,12 +27,12 @@
             </tr>
         </thead>
         <tbody>
-            {% for transaction in object_list %}
+            {% for deposite in object_list %}
             <tr>
-                <td>{{ transaction.timestamp|date:"F d, Y h:i A" }}</td>
-                <td">{{ transaction.get_transaction_type_display }}</td>
-                <td>$ {{ transaction.amount|floatformat:2|intcomma }}</td>
-                <td>$ {{ transaction.balance_after_transaction|floatformat:2|intcomma }}</td>
+                <td>{{ deposite.timestamp|date:"F d, Y h:i A" }}</td>
+                <td">{{ deposite.get_deposite_type_display }}</td>
+                <td>$ {{ deposite.amount|floatformat:2|intcomma }}</td>
+                <td>$ {{ deposite.balance_after_deposite|floatformat:2|intcomma }}</td>
             </tr>
             {% endfor %}
             <tr>

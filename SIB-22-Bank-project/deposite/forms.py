@@ -3,7 +3,7 @@ import datetime
 from django import forms
 from django.conf import settings
 
-from .models import Deposite
+from .models import *
 
 
 class MainForm(forms.ModelForm):
@@ -24,19 +24,19 @@ class MainForm(forms.ModelForm):
 
     def save(self, commit=True):
         self.instance.account = self.account
-        self.instance.balance_after_transaction = self.account.balance
+        self.instance.balance_after_deposite = self.account.balance
         return super().save()
 
 
-class DepositForm(MainForm):
+class DepositeForm(MainForm):
 
     def clean_amount(self):
-        min_deposit_amount = settings.MINIMUM_DEPOSIT_AMOUNT
+        min_deposite_amount = settings.MINIMUM_DEPOSITE_AMOUNT
         amount = self.cleaned_data.get('amount')
 
-        if amount < min_deposit_amount:
+        if amount < min_deposite_amount:
             raise forms.ValidationError(
-                f'You need to deposit at least {min_deposit_amount} $'
+                f'You need to deposite at least {min_deposite_amount} $'
             )
 
         return amount

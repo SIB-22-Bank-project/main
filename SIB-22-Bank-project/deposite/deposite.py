@@ -1,9 +1,9 @@
-DEPOSIT = 1
+DEPOSITE = 1
 WITHDRAWAL = 2
 INTEREST = 3
 
 DEPOSITE_TYPE_CHOICES = (
-    (DEPOSIT, 'Deposit'),
+    (DEPOSITE, 'Deposite'),
     (WITHDRAWAL, 'Withdrawal'),
     (INTEREST, 'Interest'),
 )

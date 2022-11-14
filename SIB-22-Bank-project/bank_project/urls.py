@@ -24,5 +24,6 @@ urlpatterns = [
     # Добавление url
     path('', CoreView.as_view(), name='home'),
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('deposite/', include('deposite.urls', namespace='deposite')),
     
 ]

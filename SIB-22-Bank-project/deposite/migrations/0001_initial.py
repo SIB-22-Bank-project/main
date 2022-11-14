@@ -18,8 +18,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('amount', models.DecimalField(decimal_places=2, max_digits=12)),
-                ('balance_after_transaction', models.DecimalField(decimal_places=2, max_digits=12)),
-                ('transaction_type', models.PositiveSmallIntegerField(choices=[(1, 'Deposit'), (2, 'Withdrawal'), (3, 'Interest')])),
+                ('balance_after_deposite', models.DecimalField(decimal_places=2, max_digits=12)),
+                ('deposite_type', models.PositiveSmallIntegerField(choices=[(1, 'Deposite'), (2, 'Withdrawal'), (3, 'Interest')])),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('account', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='deposite', to='accounts.useraccount')),
             ],

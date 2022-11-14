@@ -105,7 +105,7 @@ class UserAccount(models.Model):
             'The month number that interest calculation will start from'
         )
     )
-    initial_deposit_date = models.DateField(null=True, blank=True)
+    initial_deposite_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return str(self.account_no)

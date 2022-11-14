@@ -42,7 +42,7 @@ class UserRegistrationView(TemplateView):
                 )
             )
             return HttpResponseRedirect(
-                reverse_lazy('deposite:deposit_money')
+                reverse_lazy('deposite:deposite_money')
             )
 
         return self.render_to_response(

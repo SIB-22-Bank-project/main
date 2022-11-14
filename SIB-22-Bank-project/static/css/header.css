@@ -1,6 +1,6 @@
 @import url(./main.css);
 .header-container {
-    padding: 2rem 8rem;
+    padding: 2rem 9rem;
     background: var(--oxford-blue);
     color: var(--platinum);
     display: flex;

@@ -1,7 +1,7 @@
 @import url(./main.css);
 .header-container {
-    padding: 2rem 9rem;
-    background: var(--oxford-blue);
+    padding: 2rem 8rem;
+    background-image: var(--blue-gradient);
     color: var(--platinum);
     display: flex;
     align-items: center;

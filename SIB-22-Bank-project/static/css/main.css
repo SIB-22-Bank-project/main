@@ -1,0 +1,20 @@
+@import url(./reset-styles.css);
+@import url(./header.css);
+@import url(./footer.css);
+:root {
+    --black: #000000;
+    --oxford-blue: #14213D;
+    --orange-web: #FCA311;
+    --platinum: #E5E5E5;
+    --white: #FFFFFF;
+    --blue-gradient: linear-gradient(to bottom, #1c2d51, #192949, #172440, #142038, #121c30);
+}
+body {
+    font-size: 18px;
+    font-family: sans-serif;
+    color: var(--black);
+    background: var(--platinum);
+}
+.main-container {
+    padding: 2rem 8rem;
+}

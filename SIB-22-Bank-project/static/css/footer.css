@@ -1,0 +1,14 @@
+@import url(./main.css);
+.footer-container {
+    padding: 1rem 0rem;
+    font-size: 0.8rem;
+    text-align: right;
+    background-image: var(--blue-gradient);
+    color: var(--platinum);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.footer-container > p {
+    margin-right: 8rem;
+}

@@ -16,12 +16,12 @@ class UserRegistrationView(TemplateView):
     form_class = UserRegistrationForm
     template_name = 'accounts/user_registration.html'
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if self.request.user.is_authenticated:
-    #         return HttpResponseRedirect(
-    #             reverse_lazy('home')
-    #         )
-    #     return super().dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return HttpResponseRedirect(
+                reverse_lazy('deposite:profile.html')
+            )
+        return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         registration_form = UserRegistrationForm(self.request.POST)
@@ -42,7 +42,7 @@ class UserRegistrationView(TemplateView):
                 )
             )
             return HttpResponseRedirect(
-                reverse_lazy('home')
+                reverse_lazy('deposite:deposit_money')
             )
 
         return self.render_to_response(

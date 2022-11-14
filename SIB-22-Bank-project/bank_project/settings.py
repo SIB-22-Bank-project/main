@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Добавление приложений 
     'accounts.apps.AccountsConfig',
     'core.apps.CoreConfig',
+    'deposite.apps.DepositeConfig',
 ]
 
 MIDDLEWARE = [

@@ -10,15 +10,15 @@ conn=None
 cursor=None
 
 TABLES = {}
-TABLES['employees'] = (
-    "CREATE TABLE `employees` ("
-    "  `emp_no` int(5) NOT NULL ,"
+TABLES['managers'] = (
+    "CREATE TABLE `managers` ("
+    "  `manager_no` int(5) NOT NULL ,"
     "  `birth_date` date NOT NULL,"
     "  `first_name` varchar(15) NOT NULL,"
     "  `last_name` varchar(15) NOT NULL,"
     "  `gender` enum('M','F') NOT NULL,"
-    "  `hire_date` date NOT NULL,"
-    "  PRIMARY KEY (`emp_no`)"
+    "  `add_date` date NOT NULL,"
+    "  PRIMARY KEY (`manager_no`)"
     ") ")
 
 TABLES['clients'] = (
@@ -36,12 +36,12 @@ TABLES['clients'] = (
     ") "
 )
 
-TABLES['empass'] = (
-    "CREATE TABLE `empass` ("
-    "  `emp_no` int(5) NOT NULL,"
+TABLES['managerpass'] = (
+    "CREATE TABLE `managerpass` ("
+    "  `manager_no` int(5) NOT NULL,"
     "  `pass` varchar(8) NOT NULL,"
-    "  PRIMARY KEY (`emp_no`),"
-    "  FOREIGN KEY(`emp_no`) REFERENCES employees(emp_no)"
+    "  PRIMARY KEY (`manager_no`),"
+    "  FOREIGN KEY(`manager_no`) REFERENCES managers(manager_no)"
     ") "
 )
 

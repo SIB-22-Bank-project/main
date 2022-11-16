@@ -17,7 +17,7 @@ def ap1():
     cur=query.cursor()
     print("-------------Add client Process-------------")
 
-#client number
+#client acc_no
     while True:
         acc_no=input("Enter accaunt_no (max 5 int): ")
         if len(acc_no) <= 5:

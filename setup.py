@@ -54,12 +54,11 @@ TABLES['deposit'] = (
 TABLES['credit'] = (
     "CREATE TABLE `credit` ("
     "  `acc_no` int(5) NOT NULL AUTO_INCREMENT,"
-    "  `credit_type` enum('PL','HL','EL','TL','BL') NOT NULL,"
+    "  `credit_type` enum('ConC','CarC','MorC','ComC','HousC') NOT NULL,"
     "  `credit_amt` int NOT NULL,"
     "  `time_period_months` int NOT NULL,"
     "  `iterest_perc_per_annum` int(1) NOT NULL,"
-    "  `amt-per-month` int NOT NULL,"
-    "  `remaining_amt` int NOT NULL,"
+    "  `amt_per_month` int NOT NULL,"\
     "  PRIMARY KEY (`acc_no`),"
     "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
     ") "

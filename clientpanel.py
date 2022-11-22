@@ -1,10 +1,9 @@
 import client.account
 import client.deposit
-import client.loan
+import client.credit
 
 
 def ap():
-    print("\nWelcome Client!!")
     
     while True:
         print("\n---------------------Client Panel-----------------------")
@@ -18,7 +17,7 @@ def ap():
         elif a=='2':
             client.deposit.ap2()
         elif a=='3':
-            client.loan.ap3()
+            client.credit.ap3()
         elif a=='0':
             print("Quit Manager Panel.")
             break

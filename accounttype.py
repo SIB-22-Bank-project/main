@@ -5,10 +5,9 @@ import manager.register
 def acctype():
     while True:
         print("--------------Account Selector Menu--------------")
-        print("1.Admin.")
-        print("2.Manager.")
-        print("3.Client.")
-        print("4.Crate account.")
+        print("1. Admin.")
+        print("2. Manager.")
+        print("3. Client.")
         print("Enter 0 to end process.")
         a = input("\nEnter your account type: ")
 
@@ -35,13 +34,11 @@ def acctype():
             else:
                 b = input("\nDo you want to create a new account? (y/n): ")
                 if b == "y":
-                    manager.addclient.ap1()
+                    manager.register.ap()
             # if b == 'client123':
             #    clientpanel.ap()
             # else:
             #   print("\nWrong password!\n")b = input("\nEnter client password:")
-        elif a == '4':
-            manager.register.ap()
         elif a == '0':
             print("\nShutting down the program.")
             break

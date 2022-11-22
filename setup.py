@@ -18,6 +18,7 @@ TABLES['managers'] = (
     "  `last_name` varchar(15) NOT NULL,"
     "  `gender` enum('M','F') NOT NULL,"
     "  `birth_date` date NOT NULL,"
+    "  `email` varchar(25) NOT NULL,"
     "  `passwd` varchar(8) NOT NULL,"
     "  `add_date` DATE NULL DEFAULT (CURRENT_DATE),"
     "  PRIMARY KEY (`manager_no`)"

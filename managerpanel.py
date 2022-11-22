@@ -2,12 +2,29 @@ import manager.addclient
 import manager.delclient
 import manager.editclient
 import manager.showclient
+import mysql.connector
+import pickle
 
 def ap():
-    print("\nWelcome Manager!!")
     
     while True:
-        print("\n---------------------Manager Panel-----------------------")
+        cred = open("cred.dat","rb")
+        dat=pickle.load(cred)
+        cred.close()
+        Passwo=dat[0]
+        Databa=dat[1]
+        conn=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
+        cur=conn.cursor()
+        cur.execute("select * from managers")
+        results=cur.fetchall()
+        email = input('Write managaer email:\t')
+        for row in results:
+            if row[5] == email:
+                print("\nWelcome ",row[1],"  Manager!!")
+            else:
+                print("\nWrong password!\n")
+
+        print("\n---------------------Manager  Panel-----------------------")
         print("\n1. Add a client")
         print("2. Del a client")
         print("3. Edit a client")

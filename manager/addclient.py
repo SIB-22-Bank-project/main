@@ -188,12 +188,12 @@ def ap1():
             print("Max 11 characters")
 #client email   
     while True:
-        email=input("Enter email (max 15 char): ")
-        if len(email)<= 15:
+        email=input("Enter email (max 25 char): ")
+        if len(email)<= 25:
             print("Done OK")
             break
         else:
-            print("Max 15 characters")
+            print("Max 25 characters")
 # client passwd
     while True:
         passwd=input("Enter manager login password(max 8 characters, min 4): ")

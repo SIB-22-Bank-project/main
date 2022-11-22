@@ -57,8 +57,9 @@ def ap3():
         print("3.last-name:", results1[2])
         print("4.gender:", results1[3])
         print("5.birth_date:", results1[4])
-        print("6.password", results1[5])
-        print("7.add_date:", results1[6])
+        print("6.email", results1[5])
+        print("7.password:", results1[6])
+        print("8.add_date:", results1[6])
         birth_date = results1[4]
         add_date = results1[6]
         f2()
@@ -211,6 +212,22 @@ def f2():
                         print("Maximum age is 60 years!!!")
                     print("\nwrong input\n")
     if a == '6':
+        while True:
+            email=input("Enter email (max 25 char): ")
+            if len(email)<= 15:
+                try:
+                    cur.execute("update managers set email='{}' where manager_no={}".format(email,manager_no))
+                    conn.commit()
+                except mysql.connector.Error as err:
+                    print(err.msg)
+                    print("-----------Value addition was unsuccessful!!!!-------------")
+                    break
+                else:
+                    print("Updated email...")
+                    break
+            else:
+                print("Max 25 characters")
+    if a == '7':
         while True:
             password = input("Enter Manager login password(max 8 characters, min 4): ")
             lp = len(password)

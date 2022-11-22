@@ -112,60 +112,13 @@ def ap1():
                 else:
                     print("Maximum age is 60 years!!!")
                 print("\nwrong input\n")
-#manager add date
-    # while True:
-    #     while True:
-    #         hyear=input("Enter add year (4 int): ")
-    #         if len(hyear) == 4:
-    #             try:
-    #                 hyear=int(hyear)
-    #                 print("Done OK")
-    #             except ValueError:
-    #                 print("year should be an integer!!")
-    #             else:
-    #                 break
-    #         else:
-    #             print("Year consists of 4 integers!!")
-
-    #     while True:
-    #         hmonth=input("Enter add month (2 int) (01 to 12): ")
-    #         if len(hmonth) == 2:
-    #             try:
-    #                 hmonth=int(hmonth)
-    #                 print("Done OK")
-    #             except ValueError:
-    #                 print("month should be an integer!!")
-    #             else:
-    #                 break
-    #         else:
-    #             print("Month consists of 2 integers!!")
-
-    #     while True:
-    #         hday=input("Enter add day (2 int) (01 to 31): ")
-    #         if len(hday) == 2:
-    #             try:
-    #                 hday=int(hday)
-    #                 print("Done OK")
-    #             except ValueError:
-    #                 print("Date should be an integer!!")
-    #             else:
-    #                 break
-    #         else:
-    #             print("Date consists of 2 integers!!")
-
-    #     try:
-    #         add_date=date(hyear,hmonth,hday)
-    #     except ValueError:
-    #         import traceback
-    #         traceback.print_exc()
-    #     else:
-    #         if age(add_date)>60:
-    #             print("manager must be below 60 years of age!!")
-    #         elif age(birth_date)-age(add_date)>=18:
-    #             break
-    #         else:
-    #             print("manager must atleast be 18 years of age!!")
-
+    while True:
+        email=input("Enter email (max 25 char): ")
+        if len(email)<= 25:
+            print("Done OK")
+            break
+        else:
+            print("Max 25 characters")
     while True:
         passwd=input("Enter manager login password(max 8 characters, min 4): ")
         lp=len(passwd)
@@ -178,16 +131,12 @@ def ap1():
             break
 
     print("=========== Final Data ===========")
-    # print(manager_no,birth_date,first_name,last_name,gender,add_date)
 
-    print(first_name,last_name,gender,birth_date,passwd)
-    # add_manager=("INSERT INTO managers "
-    # "(manager_no,first_name,last_name,gender,birth_date,passwd,add_date) "
-    # "VALUES (%s,%s,%s,%s,%s,%s)")
+    print(first_name,last_name,gender,birth_date,email,passwd)
     add_manager=("INSERT INTO managers "
-    "(first_name,last_name,gender,birth_date,passwd) "
-    "VALUES (%s,%s,%s,%s,%s)")
-    data_manager=(first_name,last_name,gender,birth_date,passwd)
+    "(first_name,last_name,gender,birth_date,email,passwd) "
+    "VALUES (%s,%s,%s,%s,%s,%s)")
+    data_manager=(first_name,last_name,gender,birth_date,email,passwd)
     try:
         cur.execute(add_manager, data_manager)
         query.commit()

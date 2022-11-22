@@ -22,22 +22,8 @@ def acctype():
                 print("\nWrong password!\n")
 
         elif a == '2':
-            b = input("\nEnter manager password: ")
-            cred = open("cred.dat","rb")
-            dat=pickle.load(cred)
-            cred.close()
-            Passwo=dat[0]
-            Databa=dat[1]
-            conn=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
-            cur=conn.cursor()
-            cur.execute("select * from managers")
-            results=cur.fetchall()
-            for row in results:
-                if b == row[5]:
-                    managerpanel.ap()
-                else:
-                    print("\nWrong password!\n")
-
+            managerpanel.ap()
+            
         elif a == '3':
             b = input("\nDo you have an existing account? (y/n): ")
             if b == "y":

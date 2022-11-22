@@ -1,6 +1,7 @@
 from datetime import date
 import pickle
 import mysql.connector
+import clientpanel
 
 def age(birthdate):
     today = date.today()
@@ -16,30 +17,30 @@ def ap():
     query=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
     cur=query.cursor()
     print("-------------Registtration-------------")
-
-#client acc_no
+#client name          
     while True:
-        acc_no=input("Enter accaunt_no (max 5 int): ")
-        if len(acc_no) <= 5:
-            try:
-                acc_no=int(acc_no)
-                print("Done OK")
-            except ValueError:
-                print("acc_no should be an integer!!")
-            else:
-                break
+        first_name=input("Enter first name (max 15 char): ")
+        if len(first_name)<= 15:
+            break
         else:
-            print("Maximum length is 5!")
-#client account type
+            print("Max 15 characters")
+
     while True:
-        print("1.Save")
-        print("2.Credit")
+        last_name=input("Enter last name (max 15 char): ")
+        if len(last_name)<= 15:
+            break
+        else:
+            print("Max 15 characters")
+#client Gender
+    while True:
+        print("1.Male")
+        print("2.Female")
         a=input("Enter choice (1 or 2):")
         if a== '1':
-            acc_type='S'
+            gender='M'
             break
         elif a=='2':
-            acc_type='C'
+            gender='F'
             break
         else:
             print("Wrong input!!")
@@ -94,90 +95,10 @@ def ap():
                 break
             else:
                 if age(birth_date)<20:
-                    print("client must be atleast 20 years of age!!")
+                    print("You must be atleast 20 years of age!!")
                 else:
                     print("Maximum age is 60 years!!!")
                 print("\nwrong input\n")
-#client name          
-    while True:
-        first_name=input("Enter first name (max 15 char): ")
-        if len(first_name)<= 15:
-            break
-        else:
-            print("Max 15 characters")
-
-    while True:
-        last_name=input("Enter last name (max 15 char): ")
-        if len(last_name)<= 15:
-            break
-        else:
-            print("Max 15 characters")
-#client Gender
-    while True:
-        print("1.Male")
-        print("2.Female")
-        a=input("Enter choice (1 or 2):")
-        if a== '1':
-            gender='M'
-            break
-        elif a=='2':
-            gender='F'
-            break
-        else:
-            print("Wrong input!!")
-#client add date
-    while True:
-        while True:
-            addyear=input("Enter add year (4 int): ")
-            if len(addyear) == 4:
-                try:
-                    addyear=int(addyear)
-                    print("Done OK")
-                except ValueError:
-                    print("year should be an integer!!")
-                else:
-                    break
-            else:
-                print("Year consists of 4 integers!!")
-
-        while True:
-            addmonth=input("Enter add month (2 int) (01 to 12): ")
-            if len(addmonth) == 2:
-                try:
-                    addmonth=int(addmonth)
-                    print("Done OK")
-                except ValueError:
-                    print("month should be an integer!!")
-                else:
-                    break
-            else:
-                print("Month consists of 2 integers!!")
-
-        while True:
-            addday=input("Enter add day (2 int) (01 to 31): ")
-            if len(addday) == 2:
-                try:
-                    addday=int(addday)
-                    print("Done OK")
-                except ValueError:
-                    print("Date should be an integer!!")
-                else:
-                    break
-            else:
-                print("Date consists of 2 integers!!")
-
-        try:
-            acc_creation_date=date(addyear,addmonth,addday)
-        except ValueError:
-            import traceback
-            traceback.print_exc()
-        else:
-            if age(acc_creation_date)>60:
-                print("client must be below 60 years of age!!")
-            elif age(birth_date)-age(acc_creation_date)>=18:
-                break
-            else:
-                print("client must atleast be 18 years of age!!")
 #client phone          
     while True:
         mobile_no=input("Enter mobile (max 11 char): ")
@@ -194,9 +115,22 @@ def ap():
             break
         else:
             print("Max 15 characters")
+#client account type
+    while True:
+        print("1.Save")
+        print("2.Credit")
+        a=input("Enter choice (1 or 2):")
+        if a== '1':
+            acc_type='S'
+            break
+        elif a=='2':
+            acc_type='C'
+            break
+        else:
+            print("Wrong input!!")
 # client passwd
     while True:
-        passwd=input("Enter manager login password(max 8 characters, min 4): ")
+        passwd=input("Enter password(max 8 characters, min 4): ")
         lp=len(passwd)
         if lp>8:
             print("Max 8 characters only.")
@@ -207,11 +141,11 @@ def ap():
             break
 
     print("=========== Final Data ===========")
-    print(acc_no,acc_type,first_name,last_name,gender,birth_date,acc_creation_date,mobile_no,email,passwd)
+    print(first_name,last_name,gender,birth_date,mobile_no,email,acc_type,passwd)
     add_client=("INSERT INTO clients "
-    "(acc_no,acc_type,first_name,last_name,gender,birth_date,acc_creation_date,mobile_no,email,passwd) "
-    "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
-    data_client=(acc_no,acc_type,first_name,last_name,gender,birth_date,acc_creation_date,mobile_no,email,passwd)
+    "(first_name,last_name,gender,birth_date,mobile_no,email,acc_type,passwd) "
+    "VALUES (%s,%s,%s,%s,%s,%s,%s,%s)")
+    data_client=(first_name,last_name,gender,birth_date,mobile_no,email,acc_type,passwd)
     try:
         cur.execute(add_client, data_client)
         query.commit()
@@ -220,3 +154,4 @@ def ap():
         print("-----------Value addition was unsuccessful!!!!-------------")
     cur.close()
     query.close()
+    clientpanel.ap()

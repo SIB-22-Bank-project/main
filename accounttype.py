@@ -35,10 +35,6 @@ def acctype():
                 b = input("\nDo you want to create a new account? (y/n): ")
                 if b == "y":
                     manager.register.ap()
-            # if b == 'client123':
-            #    clientpanel.ap()
-            # else:
-            #   print("\nWrong password!\n")b = input("\nEnter client password:")
         elif a == '0':
             print("\nShutting down the program.")
             break

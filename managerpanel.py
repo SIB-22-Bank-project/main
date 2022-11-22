@@ -8,12 +8,12 @@ def ap():
     
     while True:
         print("\n---------------------Manager Panel-----------------------")
-        print("\n1.Add client")
-        print("2.Del client")
-        print("3.Edit client")
-        print("4.Show client table")
+        print("\n1. Add a client")
+        print("2. Del a client")
+        print("3. Edit a client")
+        print("4. Show a client table")
         print("\nInput 0 to quit.")
-        a=input("Enter choice:")
+        a=input("Enter choice: ")
         if a=='1':
             manager.addclient.ap1()
         elif a=='2':

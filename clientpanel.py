@@ -8,11 +8,11 @@ def ap():
     
     while True:
         print("\n---------------------Client Panel-----------------------")
-        print("\n1.Account")
-        print("2.Deposit")
-        print("3.Loan")
+        print("\n1. Account info")
+        print("2. Deposit")
+        print("3. Loan")
         print("\nInput 0 to quit.")
-        a=input("Enter choice:")
+        a=input("Enter choice: ")
         if a=='1':
             client.account.ap1()
         elif a=='2':

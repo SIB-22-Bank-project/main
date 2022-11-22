@@ -2,18 +2,28 @@ import admin.addmanager
 import admin.delmanager
 import admin.editmanager
 import admin.showmanagers
+import manager.addclient
+import manager.delclient
+import manager.editclient
+import manager.showclient
 
 def ap():
     print("\nWelcome Admin!!")
     
     while True:
         print("\n---------------------Admin Panel-----------------------")
-        print("\n1.Add manager")
-        print("2.Del manager")
-        print("3.Edit manager")
-        print("4.Show manager table")
+        print("\n----Managers----")
+        print("1. Add a new manager")
+        print("2. Delete a manager")
+        print("3. Edit a manager")
+        print("4. Show a manager table")
+        print("----Clients----")
+        print("5. Add a client")
+        print("6. Del a client")
+        print("7. Edit a client")
+        print("8. Show a client table")
         print("\nInput 0 to quit.")
-        a=input("Enter choice:")
+        a=input("Enter choice: ")
         if a=='1':
             admin.addmanager.ap1()
         elif a=='2':
@@ -22,6 +32,14 @@ def ap():
             admin.editmanager.ap3()
         elif a=='4':
             admin.showmanagers.ap4()
+        if a=='5':
+            manager.addclient.ap1()
+        elif a=='6':
+            manager.delclient.ap2()
+        elif a=='7':
+            manager.editclient.ap3()
+        elif a=='8':
+            manager.showclient.ap4()
         elif a=='0':
             print("Quit Admin Panel.")
             break

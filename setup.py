@@ -40,11 +40,11 @@ TABLES['clients'] = (
     ") "
 )
 
-TABLES['savings'] = (
-    "CREATE TABLE `savings` ("
+TABLES['deposit'] = (
+    "CREATE TABLE `deposit` ("
     "  `acc_no` int(5) NOT NULL AUTO_INCREMENT,"
     "  `balance` int NOT NULL,"
-    "  `loan` enum('YES','NO') NOT NULL,"
+    "  `percent` int NOT NULL,"
     "  PRIMARY KEY (`acc_no`),"
     "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
     ") "
@@ -60,25 +60,15 @@ TABLES['current'] = (
     ") "
 )
 
-TABLES['loan'] = (
+TABLES['credit'] = (
     "CREATE TABLE `loan` ("
     "  `acc_no` int(5) NOT NULL AUTO_INCREMENT,"
-    "  `loan_type` enum('PL','HL','EL','TL','BL') NOT NULL,"
-    "  `loan_amt` int NOT NULL,"
+    "  `credit_type` enum('PL','HL','EL','TL','BL') NOT NULL,"
+    "  `credit_amt` int NOT NULL,"
     "  `time_period_months` int NOT NULL,"
     "  `iterest_perc_per_annum` int(1) NOT NULL,"
     "  `amt-per-month` int NOT NULL,"
     "  `remaining_amt` int NOT NULL,"
-    "  PRIMARY KEY (`acc_no`),"
-    "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
-    ") "
-)
-
-TABLES['overdraft'] = (
-    "CREATE TABLE `overdraft` ("
-    "  `acc_no` int(5) NOT NULL AUTO_INCREMENT,"
-    "  `overdraft_amt` int NOT NULL,"
-    "  `od_with_interest_remaining` int NOT NULL,"
     "  PRIMARY KEY (`acc_no`),"
     "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
     ") "

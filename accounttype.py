@@ -30,6 +30,8 @@ def acctype():
             if b == "y":
                 b = input("\nPlease, enter your phone number: ")
                 p = input("\nEnter your password: ")
+                if b == 1 and p == 1:
+                    clientpanel.ap()
                 # тута запрос в базу
             else:
                 b = input("\nDo you want to create a new account? (y/n): ")

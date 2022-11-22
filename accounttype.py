@@ -4,7 +4,8 @@ import clientpanel
 import manager.register
 import mysql.connector
 import pickle
-    
+
+
 def acctype():
     while True:
         print("--------------Account Selector Menu--------------")
@@ -22,8 +23,26 @@ def acctype():
                 print("\nWrong password!\n")
 
         elif a == '2':
-            managerpanel.ap()
-            
+            while True:
+                cred = open("cred.dat", "rb")
+                dat = pickle.load(cred)
+                cred.close()
+                Passwo = dat[0]
+                Databa = dat[1]
+                conn = mysql.connector.connect(
+                    host="localhost", user="root", password=Passwo, database=Databa)
+                cur = conn.cursor()
+                cur.execute("select * from managers")
+                results = cur.fetchall()
+                email = input('Enter email:\t')
+                passwd = input('Enter password:\t')
+                for row in results:
+                    if row[5] == email and row[6] == passwd:
+                        print("\nWelcome ", row[1], "  Manager!!")
+                        managerpanel.ap()
+                    else:
+                        print("\nWrong password!\n")
+
         elif a == '3':
             b = input("\nDo you have an existing account? (y/n): ")
             if b == "y":

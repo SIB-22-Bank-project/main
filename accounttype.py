@@ -44,17 +44,30 @@ def acctype():
                         print("\nWrong password!\n")
 
         elif a == '3':
-            b = input("\nDo you have an existing account? (y/n): ")
-            if b == "y":
-                b = input("\nPlease, enter your phone number: ")
-                p = input("\nEnter your password: ")
-                if b == 1 and p == 1:
-                    clientpanel.ap()
-                # тута запрос в базу
-            else:
-                b = input("\nDo you want to create a new account? (y/n): ")
-                if b == "y":
-                    manager.register.ap()
+            while True:
+                cred = open("cred.dat", "rb")
+                dat = pickle.load(cred)
+                cred.close()
+                Passwo = dat[0]
+                Databa = dat[1]
+                conn = mysql.connector.connect(
+                    host="localhost", user="root", password=Passwo, database=Databa)
+                cur = conn.cursor()
+                cur.execute("select * from managers")
+                results = cur.fetchall()
+                email = input('Enter email:\t')
+                passwd = input('Enter password:\t')
+                for row in results:
+                    if row[5] == email and row[6] == passwd:
+                        print("\nWelcome ", row[1], "!!")
+                        clientpanel.ap()
+                    else:
+                        print("\nWrong email or password!")
+                        b = input("\nDo you want to create a new account? (y/n): ")
+                        if b == "y":
+                            manager.register.ap()
+                        elif b == "n":
+                            break
         elif a == '0':
             print("\nShutting down the program.")
             break

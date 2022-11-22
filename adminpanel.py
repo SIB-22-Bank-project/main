@@ -33,7 +33,7 @@ def ap():
         elif a=='4':
             admin.showmanagers.ap4()
         if a=='5':
-            manager.addclient.ap1()
+            manager.addclient.ap()
         elif a=='6':
             manager.delclient.ap2()
         elif a=='7':

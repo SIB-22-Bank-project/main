@@ -44,6 +44,8 @@ def acctype():
                         managerpanel.ap()
                     else:
                         print("\nWrong password!\n")
+                        break
+                break
 
         elif a == '3':
             while True:

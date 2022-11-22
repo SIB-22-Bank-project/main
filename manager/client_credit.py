@@ -65,36 +65,42 @@ def ap():
     # credit_amt
         while True:
             credit_amt = input("Enter credit amount: ")
-            if len(credit_amt) <= 11:
+            if len(credit_amt) <= 10:
                 try:
-                    credit_amt = int(credit_amt)
-                    print("Checking...")
+                    credit_amt=int(credit_amt)
+                    print("Done OK")
                 except ValueError:
                     print("credit_amt should be an integer!!")
                 else:
                     break
+            else:
+                print("credit_amt consists of 10 integers!!")
     # time_period_months
         while True:
-            time_period_months = input("Enter credit amount: ")
-            if len(time_period_months) <= 11:
+            time_period_months = input("Enter time_period_months: ")
+            if len(time_period_months) <= 10:
                 try:
-                    time_period_months = int(time_period_months)
-                    print("Checking...")
+                    time_period_months=int(time_period_months)
+                    print("Done OK")
                 except ValueError:
                     print("time_period_months should be an integer!!")
                 else:
                     break
+            else:
+                print("credit_amt consists of 10 integers!!")
     # iterest_perc_per_annum
         while True:
-            iterest_perc_per_annum = input("Enter credit amount: ")
+            iterest_perc_per_annum = input("Enter iterest_perc_per_annum: ")
             if len(iterest_perc_per_annum) <= 1:
                 try:
-                    iterest_perc_per_annum = int(iterest_perc_per_annum)
-                    print("Checking...")
+                    iterest_perc_per_annum=int(iterest_perc_per_annum)
+                    print("Done OK")
                 except ValueError:
                     print("iterest_perc_per_annum should be an integer!!")
                 else:
                     break
+            else:
+                print("credit_amt consists of 10 integers!!")
     # amt_per_month
         while True:
             amt_per_month = credit_amt/time_period_months
@@ -103,7 +109,7 @@ def ap():
         print("=========== Final Data ===========")
         print(credit_type, credit_amt, time_period_months,
             iterest_perc_per_annum, amt_per_month)
-        add_client = ("INSERT INTO clients "
+        add_client = ("INSERT INTO credit "
                     "(credit_type,credit_amt,time_period_months,iterest_perc_per_annum,amt_per_month) "
                     "VALUES (%s,%s,%s,%s,%s)")
         data_client = (credit_type, credit_amt, time_period_months,

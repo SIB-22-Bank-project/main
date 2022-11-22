@@ -1,7 +1,6 @@
 from datetime import date
 import pickle
 import mysql.connector
-import clientpanel
 
 def age(birthdate):
     today = date.today()
@@ -154,4 +153,3 @@ def ap():
         print("-----------Value addition was unsuccessful!!!!-------------")
     cur.close()
     query.close()
-    clientpanel.ap()

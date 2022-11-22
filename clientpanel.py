@@ -9,7 +9,7 @@ def ap():
         print("\n---------------------Client Panel-----------------------")
         print("\n1. Account info")
         print("2. Deposit")
-        print("3. Loan")
+        print("3. Credit")
         print("\nInput 0 to quit.")
         a=input("Enter choice: ")
         if a=='1':

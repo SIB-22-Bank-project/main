@@ -105,7 +105,7 @@ def ap():
             iterest_perc_per_annum, amt_per_month)
         add_client = ("INSERT INTO clients "
                     "(credit_type,credit_amt,time_period_months,iterest_perc_per_annum,amt_per_month) "
-                    "VALUES (%s,%s,%s,%s,%s,%s,%s,%s)")
+                    "VALUES (%s,%s,%s,%s,%s)")
         data_client = (credit_type, credit_amt, time_period_months,
                     iterest_perc_per_annum, amt_per_month)
         try:

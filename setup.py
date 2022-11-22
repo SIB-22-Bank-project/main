@@ -50,18 +50,8 @@ TABLES['deposit'] = (
     ") "
 )
 
-TABLES['current'] = (
-    "CREATE TABLE `current` ("
-    "  `acc_no` int(5) NOT NULL AUTO_INCREMENT,"
-    "  `balance` int NOT NULL,"
-    "  `overdraft` int NOT NULL,"
-    "  PRIMARY KEY (`acc_no`),"
-    "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
-    ") "
-)
-
 TABLES['credit'] = (
-    "CREATE TABLE `loan` ("
+    "CREATE TABLE `credit` ("
     "  `acc_no` int(5) NOT NULL AUTO_INCREMENT,"
     "  `credit_type` enum('PL','HL','EL','TL','BL') NOT NULL,"
     "  `credit_amt` int NOT NULL,"

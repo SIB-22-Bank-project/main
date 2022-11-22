@@ -2,36 +2,42 @@ import mysql.connector
 import pickle
 from datetime import date
 
+
 def age(birthdate):
     today = date.today()
-    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+    age = today.year - birthdate.year - \
+        ((today.month, today.day) < (birthdate.month, birthdate.day))
     return age
 
-cur=None
-conn=None
-manager_no=0
-add_date=None
-birth_date=None
+
+cur = None
+conn = None
+manager_no = 0
+add_date = None
+birth_date = None
+
+
 def ap3():
     global cur
     global conn
-    cred = open("cred.dat","rb")
-    dat=pickle.load(cred)
+    cred = open("cred.dat", "rb")
+    dat = pickle.load(cred)
     cred.close()
-    Passwo=dat[0]
-    Databa=dat[1]
-    conn=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
-    cur=conn.cursor()
+    Passwo = dat[0]
+    Databa = dat[1]
+    conn = mysql.connector.connect(
+        host="localhost", user="root", password=Passwo, database=Databa)
+    cur = conn.cursor()
 
     global manager_no
     global birth_date
     global add_date
     print("---------Edit manager process----------\n")
     while True:
-        manager_no=input(("Enter manager_no of the Manager to edit the details: "))
+        manager_no = input(("Enter manager_no to edit the details: "))
         if len(manager_no) <= 5:
             try:
-                manager_no=int(manager_no)
+                manager_no = int(manager_no)
                 print("Checking...")
             except ValueError:
                 print("manager_no should be an integer!!")
@@ -39,23 +45,24 @@ def ap3():
                 break
         else:
             print("Maximum length is 5!")
-    cur.execute("select * from Managers where manager_no={}".format(manager_no))
-    results=cur.fetchall()
+    cur.execute("select * from managers where manager_no={}".format(manager_no))
+    results = cur.fetchall()
     if results == []:
         print(results)
         print("That manager number does not exist.")
     else:
-        results1=results[0]
-        print("1.manager_no:",results1[0])
-        print("2.birth_date:",results1[1])
-        print("3.first_name:",results1[2])
-        print("4.last-name:",results1[3])
-        print("5.gender:",results1[4])
-        print("6.add_date:",results1[5])
-        print("7.password")
-        birth_date=results1[1]
-        add_date=results1[5]
+        results1 = results[0]
+        print("1.manager_no:", results1[0])
+        print("2.first_name:", results1[1])
+        print("3.last-name:", results1[2])
+        print("4.gender:", results1[3])
+        print("5.birth_date:", results1[4])
+        print("6.password", results1[5])
+        print("7.add_date:", results1[6])
+        birth_date = results1[4]
+        add_date = results1[6]
         f2()
+
 
 def f2():
     global cur
@@ -64,103 +71,14 @@ def f2():
     global birth_date
     global add_date
     print("0 to quit.")
-    a=input("What would you like to change from the above:")
-    if a == '1':
-        while True:
-            en=input("Enter manager_no (max 5 int): ")
-            if len(en) <= 5:
-                try:
-                    en=int(en)
-                    print("Done OK")
-                except ValueError:
-                    print("manager_no should be an integer!!")
-                else:
-                    try:
-                        cur.execute("update manager set manager_no={} where manager_no={}".format(en,manager_no))
-                        conn.commit()
-                    except mysql.connector.Error as err:
-                        print(err.msg)
-                        print("-----------Value addition was unsuccessful!!!!-------------")
-                    else:
-                        print("Updated Manager number...")
-                        break
-            else:
-                print("Maximum length is 5!")
+    a = input("What would you like to change from the above:")
     if a == '2':
         while True:
-            while True:
-                year=input("Enter birth year (4 int): ")
-                if len(year) == 4:
-                    try:
-                        year=int(year)
-                        print("Done OK")
-                    except ValueError:
-                        print("year should be an integer!!")
-                    else:
-                        break
-                else:
-                    print("Year consists of 4 integers!!")
-
-            while True:
-                month=input("Enter birth month (2 int) (01 to 12): ")
-                if len(month) == 2:
-                    try:
-                        month=int(month)
-                        print("Done OK")
-                    except ValueError:
-                        print("month should be an integer!!")
-                    else:
-                        break
-                else:
-                    print("Month consists of 2 integers!!")
-
-            while True:
-                day=input("Enter birth day (2 int) : ")
-                if len(day) == 2:
-                    try:
-                        day=int(day)
-                        print("Done OK")
-                    except ValueError:
-                        print("Date should be an integer!!")
-                    else:
-                        break
-                else:
-                    print("Date consists of 2 integers!!")
-
-            try:
-                birth_date=date(year,month,day)
-            except ValueError:
-                import traceback
-                traceback.print_exc()
-            else:
-                if age(birth_date)>=20 and age(birth_date)<=60:
-                    if age(birth_date)-age(add_date)>=20:
-                        try:
-                            cur.execute("update Managers set birth_date='{}' where manager_no={}".format(birth_date,manager_no))
-                            conn.commit()
-                        except mysql.connector.Error as err:
-                            print(err.msg)
-                            print("-----------Value addition was unsuccessful!!!!-------------")
-                            break
-                        else:
-                            print("Updated birth date...")
-                            break
-                    else:
-                        print("Manager must be atleast 20 years of age when hired!!")
-                        print(birth_date,": birth_date")
-                        print(add_date,":hire date you entered")
-                else:
-                    if age(birth_date)<20:
-                        print("Manager must be atleast 20 years of age!!")
-                    else:
-                        print("Maximum age is 60 years!!!")
-                    print("\nwrong input\n")
-    if a == '3':
-        while True:
-            first_name=input("Enter first name (max 15 char): ")
-            if len(first_name)<= 15:
+            first_name = input("Enter first name (max 15 char): ")
+            if len(first_name) <= 15:
                 try:
-                    cur.execute("update Managers set first_name='{}' where manager_no={}".format(first_name,manager_no))
+                    cur.execute("update managers set first_name='{}' where manager_no={}".format(
+                        first_name, manager_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -171,13 +89,13 @@ def f2():
                     break
             else:
                 print("Max 15 characters")
-
-    if a == '4':
+    if a == '3':
         while True:
-            last_name=input("Enter last name (max 15 char): ")
-            if len(last_name)<= 15:
+            last_name = input("Enter last name (max 15 char): ")
+            if len(last_name) <= 15:
                 try:
-                    cur.execute("update Managers set last_name='{}' where manager_no={}".format(last_name,manager_no))
+                    cur.execute("update managers set last_name='{}' where manager_no={}".format(
+                        last_name, manager_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -188,14 +106,15 @@ def f2():
                     break
             else:
                 print("Max 15 characters")
-    if a == '5':
+    if a == '4':
         while True:
             print("1.Male")
             print("2.Female")
-            a=input("Enter choice (1 or 2):")
-            if a== '1':
+            a = input("Enter choice (1 or 2):")
+            if a == '1':
                 try:
-                    cur.execute("update Managers set gender='M' where manager_no={}".format(manager_no))
+                    cur.execute(
+                        "update managers set gender='M' where manager_no={}".format(manager_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -204,11 +123,12 @@ def f2():
                 else:
                     print("Updated gender...")
                     break
-                
-            elif a=='2':
-                gender='F'
+
+            elif a == '2':
+                gender = 'F'
                 try:
-                    cur.execute("update Managers set gender='F' where manager_no={}".format(manager_no))
+                    cur.execute(
+                        "update managers set gender='F' where manager_no={}".format(manager_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -220,14 +140,13 @@ def f2():
 
             else:
                 print("Wrong input!!")
-
-    if a == '6':
+    if a == '5':
         while True:
             while True:
-                hyear=input("Enter add year (4 int): ")
-                if len(hyear) == 4:
+                year = input("Enter birth year (4 int): ")
+                if len(year) == 4:
                     try:
-                        hyear=int(hyear)
+                        year = int(year)
                         print("Done OK")
                     except ValueError:
                         print("year should be an integer!!")
@@ -237,10 +156,10 @@ def f2():
                     print("Year consists of 4 integers!!")
 
             while True:
-                hmonth=input("Enter hire month (2 int) (01 to 12): ")
-                if len(hmonth) == 2:
+                month = input("Enter birth month (2 int) (01 to 12): ")
+                if len(month) == 2:
                     try:
-                        hmonth=int(hmonth)
+                        month = int(month)
                         print("Done OK")
                     except ValueError:
                         print("month should be an integer!!")
@@ -250,10 +169,10 @@ def f2():
                     print("Month consists of 2 integers!!")
 
             while True:
-                hday=input("Enter hire day (2 int) (01 to 31): ")
-                if len(hday) == 2:
+                day = input("Enter birth day (2 int) : ")
+                if len(day) == 2:
                     try:
-                        hday=int(hday)
+                        day = int(day)
                         print("Done OK")
                     except ValueError:
                         print("Date should be an integer!!")
@@ -263,49 +182,54 @@ def f2():
                     print("Date consists of 2 integers!!")
 
             try:
-                add_date=date(hyear,hmonth,hday)
+                birth_date = date(year, month, day)
             except ValueError:
                 import traceback
                 traceback.print_exc()
             else:
-                if age(birth_date)-age(add_date)>=20:
-                    try:
-                        cur.execute("update Managers set add_date='{}' where manager_no={}".format(add_date,manager_no))
-                        conn.commit()
-                    except mysql.connector.Error as err:
-                        print(err.msg)
-                        print("-----------Value addition was unsuccessful!!!!-------------")
-                        break
+                if age(birth_date) >= 20 and age(birth_date) <= 60:
+                    if age(birth_date)-age(add_date) >= 20:
+                        try:
+                            cur.execute("update managers set birth_date='{}' where manager_no={}".format(
+                                birth_date, manager_no))
+                            conn.commit()
+                        except mysql.connector.Error as err:
+                            print(err.msg)
+                            print(
+                                "-----------Value addition was unsuccessful!!!!-------------")
+                            break
+                        else:
+                            print("Updated birth date...")
+                            break
                     else:
-                        print("Updated add date...")
-                        break
+                        print("Manager must be atleast 20 years of age when hired!!")
+                        print(birth_date, ": birth_date")
+                        print(add_date, ":hire date you entered")
                 else:
-                    print("Manager must atleast be 20 years of age when added!!")
-    if a=='7':
-        print("1.Show the password")
-        print("2.Change the password")
-        ans=input("Enter your choice (1,2):")
-        if ans=='1':
-            cur.execute("SELECT pass from managerpass where manager_no={}".format(manager_no))
-            result=cur.fetchall()
-            print(result[0][0], "is the password.")
-        elif ans=='2':
-            while True:
-                password=input("Enter Manager login password(max 8 characters, min 4): ")
-                lp=len(password)
-                if lp>8:
-                    print("Max 8 characters only.")
-                elif lp<4:
-                    print("Minimum 4 characters to be entered.")
-                else:
-                    try:
-                        cur.execute("UPDATE managerpass set pass=LPAD({},{},'0') where manager_no={}".format(password,lp,manager_no))
-                        conn.commit()
-                    except mysql.connector.Error as err:
-                        print(err.msg)
-                        print("-----------Password change was unsuccessful!!!!-------------")
+                    if age(birth_date) < 20:
+                        print("Manager must be atleast 20 years of age!!")
                     else:
-                        print("Password changed successfully!!!")
-                        break
+                        print("Maximum age is 60 years!!!")
+                    print("\nwrong input\n")
+    if a == '6':
+        while True:
+            password = input("Enter Manager login password(max 8 characters, min 4): ")
+            lp = len(password)
+            if lp > 8:
+                print("Max 8 characters only.")
+            elif lp < 4:
+                print("Minimum 4 characters to be entered.")
+            else:
+                try:
+                    cur.execute("update managers set passwd='{}' where manager_no={}".format(
+                        password, manager_no))
+                    conn.commit()
+                except mysql.connector.Error as err:
+                    print(err.msg)
+                    print("-----------Value addition was unsuccessful!!!!-------------")
+                    break
+                else:
+                    print("Password changed successfully!!!")
+                    break
     cur.close()
     conn.close()

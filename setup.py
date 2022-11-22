@@ -13,43 +13,36 @@ TABLES = {}
 
 TABLES['managers'] = (
     "CREATE TABLE `managers` ("
-    "  `manager_no` int(5) NOT NULL ,"
-    "  `birth_date` date NOT NULL,"
+    "  `manager_no` int(5) NOT NULL AUTO_INCREMENT,"
     "  `first_name` varchar(15) NOT NULL,"
     "  `last_name` varchar(15) NOT NULL,"
     "  `gender` enum('M','F') NOT NULL,"
-    "  `add_date` date NOT NULL,"
+    "  `birth_date` date NOT NULL,"
+    "  `passwd` varchar(8) NOT NULL,"
+    "  `add_date` DATE NULL DEFAULT (CURRENT_DATE),"
     "  PRIMARY KEY (`manager_no`)"
     ") ")
 
-TABLES['managerpass'] = (
-    "CREATE TABLE `managerpass` ("
-    "  `manager_no` int(5) NOT NULL,"
-    "  `pass` varchar(8) NOT NULL,"
-    "  PRIMARY KEY (`manager_no`),"
-    "  FOREIGN KEY(`manager_no`) REFERENCES managers(manager_no)"
-    ") "
-)
-
 TABLES['clients'] = (
     "CREATE TABLE `clients` ("
-    "  `acc_no` int(5) NOT NULL ,"
+    "  `acc_no` int(5) NOT NULL AUTO_INCREMENT,"
     "  `acc_type` enum('S','C') NOT NULL,"
     "  `first_name` varchar(15) NOT NULL,"
     "  `last_name` varchar(15) NOT NULL,"
     "  `gender` enum('M','F') NOT NULL,"
     "  `birth_date` date NOT NULL,"
-    "  `acc_creation_date` date NOT NULL,"
     "  `mobile_no` int(11) NOT NULL,"
     "  `email` varchar(25) NOT NULL,"
     "  `passwd` varchar(8) NOT NULL,"
-    "  PRIMARY KEY (`acc_no`)"
+    "  `acc_creation_date` DATE NULL DEFAULT (CURRENT_DATE),"
+    "  PRIMARY KEY (`acc_no`),"
+    "  FOREIGN KEY(`acc_no`) REFERENCES managers(manager_no)"
     ") "
 )
 
 TABLES['savings'] = (
     "CREATE TABLE `savings` ("
-    "  `acc_no` int(5) NOT NULL,"
+    "  `acc_no` int(5) NOT NULL AUTO_INCREMENT,"
     "  `balance` int NOT NULL,"
     "  `loan` enum('YES','NO') NOT NULL,"
     "  PRIMARY KEY (`acc_no`),"
@@ -59,7 +52,7 @@ TABLES['savings'] = (
 
 TABLES['current'] = (
     "CREATE TABLE `current` ("
-    "  `acc_no` int(5) NOT NULL,"
+    "  `acc_no` int(5) NOT NULL AUTO_INCREMENT,"
     "  `balance` int NOT NULL,"
     "  `overdraft` int NOT NULL,"
     "  PRIMARY KEY (`acc_no`),"
@@ -69,7 +62,7 @@ TABLES['current'] = (
 
 TABLES['loan'] = (
     "CREATE TABLE `loan` ("
-    "  `acc_no` int(5) NOT NULL,"
+    "  `acc_no` int(5) NOT NULL AUTO_INCREMENT,"
     "  `loan_type` enum('PL','HL','EL','TL','BL') NOT NULL,"
     "  `loan_amt` int NOT NULL,"
     "  `time_period_months` int NOT NULL,"
@@ -83,7 +76,7 @@ TABLES['loan'] = (
 
 TABLES['overdraft'] = (
     "CREATE TABLE `overdraft` ("
-    "  `acc_no` int(5) NOT NULL,"
+    "  `acc_no` int(5) NOT NULL AUTO_INCREMENT,"
     "  `overdraft_amt` int NOT NULL,"
     "  `od_with_interest_remaining` int NOT NULL,"
     "  PRIMARY KEY (`acc_no`),"

@@ -103,7 +103,7 @@ def f2():
                     break
                 else:
                     print("Updated last name...")
-                    break
+                    ap3()
             else:
                 print("Max 15 characters")
     if a == '4':
@@ -122,7 +122,7 @@ def f2():
                     break
                 else:
                     print("Updated gender...")
-                    break
+                    ap3()
 
             elif a == '2':
                 gender = 'F'
@@ -136,7 +136,7 @@ def f2():
                     break
                 else:
                     print("Updated gender...")
-                    break
+                    ap3()
 
             else:
                 print("Wrong input!!")
@@ -200,11 +200,10 @@ def f2():
                             break
                         else:
                             print("Updated birth date...")
-                            break
+                            ap3()
                     else:
                         print("Manager must be atleast 20 years of age when hired!!")
                         print(birth_date, ": birth_date")
-                        print(add_date, ":hire date you entered")
                 else:
                     if age(birth_date) < 20:
                         print("Manager must be atleast 20 years of age!!")
@@ -227,7 +226,7 @@ def f2():
                 except mysql.connector.Error as err:
                     print(err.msg)
                     print("-----------Value addition was unsuccessful!!!!-------------")
-                    break
+                    ap3()
                 else:
                     print("Password changed successfully!!!")
                     break

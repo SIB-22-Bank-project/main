@@ -2,8 +2,6 @@ import manager.addclient
 import manager.delclient
 import manager.editclient
 import manager.showclient
-import mysql.connector
-import pickle
 
 
 def ap():

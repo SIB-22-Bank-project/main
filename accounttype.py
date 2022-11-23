@@ -48,32 +48,32 @@ def acctype():
                 break
 
         elif a == '3':
-            while True:
-                cred = open("cred.dat", "rb")
-                dat = pickle.load(cred)
-                cred.close()
-                Passwo = dat[0]
-                Databa = dat[1]
-                conn = mysql.connector.connect(
-                    host="localhost", user="root", password=Passwo, database=Databa)
-                cur = conn.cursor()
-                cur.execute("select * from clients")
-                results = cur.fetchall()
-                cli_email = input('Enter email:\t')
-                cli_passwd = input('Enter password:\t')
-                for row in results:
-                    if row[6] == cli_email and row[8] == cli_passwd:
-                        print("\nWelcome",row[1],"!!")
-                        client_no = row[0]
-                        clientpanel.ap()
-                    else:
-                        print("\nWrong email or password!")
-                        b = input("\nDo you want to create a new account? (y/n): ")
-                        if b == "y":
-                            manager.register.ap()
-                        elif b == "n":
-                            break
-                break
+            b = input("First time? (y/n): ")
+            if b == "y":
+                manager.register.ap()
+            else:
+                while True:
+                    cred = open("cred.dat", "rb")
+                    dat = pickle.load(cred)
+                    cred.close()
+                    Passwo = dat[0]
+                    Databa = dat[1]
+                    conn = mysql.connector.connect(
+                        host="localhost", user="root", password=Passwo, database=Databa)
+                    cur = conn.cursor()
+                    cur.execute("select * from clients")
+                    results = cur.fetchall()
+                    print("Please, enter your login information.")
+                    cli_email = input('Email: ')
+                    cli_passwd = input('Password: ')
+                    for row in results:
+                        if row[6] == cli_email and row[8] == cli_passwd:
+                            print("\nWelcome", row[1], "!!")
+                            client_no = row[0]
+                            clientpanel.ap()
+                        else:
+                            print("\nWrong email or password!")
+                    break
         elif a == '0':
             print("\nShutting down the program.")
             break

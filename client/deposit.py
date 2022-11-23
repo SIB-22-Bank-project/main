@@ -1,5 +1,6 @@
 import mysql.connector
 import pickle
+import accounttype
 def ap2():
     cred = open("cred.dat","rb")
     dat=pickle.load(cred)

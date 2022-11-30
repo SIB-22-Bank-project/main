@@ -68,7 +68,7 @@ def acctype():
                     cli_passwd = input('Password: ')
                     for row in results:
                         if row[6] == cli_email and row[8] == cli_passwd:
-                            if row[12]:
+                            if row[10] == 1:
                                 print("Your account is frozen!")
                             else:
                                 print("\nWelcome", row[1], "!")

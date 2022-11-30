@@ -10,11 +10,11 @@ def age(birthdate):
 cur=None
 conn=None
 acc_no=0
-add_date=None
-birth_date=None
 def ap5():
     global cur
     global conn
+    global acc_no
+
     cred = open("cred.dat","rb")
     dat=pickle.load(cred)
     cred.close()
@@ -23,9 +23,6 @@ def ap5():
     conn=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
     cur=conn.cursor()
 
-    global acc_no
-    global birth_date
-    global add_date
     print("---------Block client process----------\n")
     while True:
         acc_no=input(("Enter acc_no of the Client to edit the details: "))
@@ -46,27 +43,25 @@ def ap5():
         print("That client number does not exist.")
     else:
         results1=results[0]
-        print("1.is_frozen:",results1[12])
-        birth_date=results1[1]
-        add_date=results1[5]
+        print("1.is_frozen:",results1[10])
+        # birth_date=results1[1]
+        # add_date=results1[5]
         f2()
 
 def f2():
     global cur
     global conn
     global acc_no
-    global birth_date
-    global add_date
     print("0 to quit.")
-    a=input("What would you like to change from the above:")
-    if a == '5':
-        while True:
+    a=input("What would you like to change from the above:(y/n):\t")
+    while True:
+        if a == 'y':
             print("1. Block client")
             print("2. Unblock client")
             a=input("Enter choice (1 or 2):")
             if a== '1':
                 try:
-                    cur.execute("update Clients set is_frozen=true where acc_no={}".format(acc_no))
+                    cur.execute("update clients set is_frozen=true where acc_no={}".format(acc_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -74,7 +69,7 @@ def f2():
                     break
             elif a=='2':
                 try:
-                    cur.execute("update Clients set is_frozen=false where acc_no={}".format(acc_no))
+                    cur.execute("update clients set is_frozen=false where acc_no={}".format(acc_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -83,5 +78,13 @@ def f2():
 
             else:
                 print("Wrong input!!")
+        elif a == 'n':
+            print("Ok....")
+            break
+        else:
+            print("By!")
+            break
+
+
     cur.close()
     conn.close()

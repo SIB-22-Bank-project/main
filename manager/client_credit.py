@@ -1,10 +1,12 @@
 import pickle
 import mysql.connector
+import accounttype
 
 acc_no = 0
-
+credit_atm = 0
 
 def ap():
+    global credit_amt
     cred = open("cred.dat", "rb")
     dat = pickle.load(cred)
     cred.close()
@@ -122,3 +124,31 @@ def ap():
             print("-----------Value addition was unsuccessful!!!!-------------")
     cur.close()
     query.close()
+    
+    cred = open("cred.dat","rb")
+    dat=pickle.load(cred)
+    cred.close()
+    Passwo=dat[0]
+    Databa=dat[1]
+    conn=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
+    cur=conn.cursor()
+    cur.execute("select * from clients")
+    results=cur.fetchall()
+    print("+---------+-------------+------------------+------------------+------------+-------------+----------------+")
+    print("|","%16s"%"FIRST_NAME","|","%16s"%"LAST_NAME","|","%7s"%"GENDER","|","%11s"%"BIRTH_DATE","|","%11s"%"MOBILE_NO","|","%16s"%"EMAIL","|","%7s"%"ACC_TYPE","|","%7s"%"BALANCE","|")
+    for row in results:
+        if accounttype.client_no == row[0]:
+            try:
+                money=row[11]+credit_amt
+                cur.execute("update clients set money='{}' where acc_no={}".format(money,acc_no))
+                conn.commit()
+            except mysql.connector.Error as err:
+                print(err.msg)
+                print("-----------Value addition was unsuccessful!!!!-------------")
+                break
+            else:
+                print("Updated money...")
+                break
+    cur.close()
+    conn.close()
+

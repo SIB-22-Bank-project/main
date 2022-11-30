@@ -36,9 +36,10 @@ TABLES['clients'] = (
     "  `acc_type` enum('S','C') NOT NULL,"
     "  `passwd` varchar(8) NOT NULL,"
     "  `acc_creation_date` DATE NULL DEFAULT (CURRENT_DATE),"
+    "  `is_frozen` boolean DEFAULT false,"
+    "  `money` int NOT NULL,"
     "  PRIMARY KEY (`acc_no`),"
-    "  FOREIGN KEY(`acc_no`) REFERENCES managers(manager_no),"
-    "  `is_frozen` boolean DEFAULT false"
+    "  FOREIGN KEY(`acc_no`) REFERENCES managers(manager_no)"
     ") "
 )
 
@@ -63,6 +64,14 @@ TABLES['credit'] = (
     "  PRIMARY KEY (`acc_no`),"
     "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
     ") "
+)
+
+TABLES['account'] = (
+    "CREATE TABLE `account` AS "
+    "SELECT 'acc_no','money' FROM `clients`"
+    # "PRIMARY KEY (`acc_no`),"
+    # "FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
+    # ") "
 )
 
 

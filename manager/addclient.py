@@ -127,6 +127,17 @@ def ap():
             break
         else:
             print("Wrong input!!")
+# client money
+    while True:
+        money=input("Enter money: ")
+        lm=len(money)
+        if lm>10:
+            print("Max 10 characters only.")
+        elif lm<1:
+            print("Minimum 1 characters to be entered.")
+        else:
+            print("Done OK")
+            break
 # client passwd
     while True:
         passwd=input("Enter password(max 8 characters, min 4): ")
@@ -140,11 +151,11 @@ def ap():
             break
 
     print("=========== Final Data ===========")
-    print(first_name,last_name,gender,birth_date,mobile_no,email,acc_type,passwd)
+    print(first_name,last_name,gender,birth_date,mobile_no,email,acc_type,money,passwd)
     add_client=("INSERT INTO clients "
-    "(first_name,last_name,gender,birth_date,mobile_no,email,acc_type,passwd) "
-    "VALUES (%s,%s,%s,%s,%s,%s,%s,%s)")
-    data_client=(first_name,last_name,gender,birth_date,mobile_no,email,acc_type,passwd)
+    "(first_name,last_name,gender,birth_date,mobile_no,email,acc_type,money,passwd) "
+    "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)")
+    data_client=(first_name,last_name,gender,birth_date,mobile_no,email,acc_type,money,passwd)
     try:
         cur.execute(add_client, data_client)
         query.commit()

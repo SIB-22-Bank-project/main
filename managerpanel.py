@@ -16,7 +16,7 @@ def ap():
         print("\nInput 0 to quit.")
         a = input("Enter choice: ")
         if a == '1':
-            manager.addclient.ap1()
+            manager.addclient.ap()
         elif a == '2':
             manager.delclient.ap2()
         elif a == '3':

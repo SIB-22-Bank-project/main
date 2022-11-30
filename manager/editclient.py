@@ -97,7 +97,7 @@ def f2():
             a=input("Enter choice (1 or 2):")
             if a== '1':
                 try:
-                    cur.execute("update Clients set acc_type='S' where acc_no={}".format(acc_no))
+                    cur.execute("update clients set acc_type='S' where acc_no={}".format(acc_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -109,7 +109,7 @@ def f2():
                 
             elif a=='2':
                 try:
-                    cur.execute("update Clients set acc_type='C' where acc_no={}".format(acc_no))
+                    cur.execute("update clients set acc_type='C' where acc_no={}".format(acc_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -127,7 +127,7 @@ def f2():
             first_name=input("Enter first name (max 15 char): ")
             if len(first_name)<= 15:
                 try:
-                    cur.execute("update Clients set first_name='{}' where acc_no={}".format(first_name,acc_no))
+                    cur.execute("update clients set first_name='{}' where acc_no={}".format(first_name,acc_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -144,7 +144,7 @@ def f2():
             last_name=input("Enter last name (max 15 char): ")
             if len(last_name)<= 15:
                 try:
-                    cur.execute("update Clients set last_name='{}' where acc_no={}".format(last_name,acc_no))
+                    cur.execute("update clients set last_name='{}' where acc_no={}".format(last_name,acc_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -162,7 +162,7 @@ def f2():
             a=input("Enter choice (1 or 2):")
             if a== '1':
                 try:
-                    cur.execute("update Clients set gender='M' where acc_no={}".format(acc_no))
+                    cur.execute("update clients set gender='M' where acc_no={}".format(acc_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -175,7 +175,7 @@ def f2():
             elif a=='2':
                 gender='F'
                 try:
-                    cur.execute("update Clients set gender='F' where acc_no={}".format(acc_no))
+                    cur.execute("update clients set gender='F' where acc_no={}".format(acc_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -237,7 +237,7 @@ def f2():
                 if age(birth_date)>=20 and age(birth_date)<=60:
                     if age(birth_date)-age(add_date)>=20:
                         try:
-                            cur.execute("update Clients set birth_date='{}' where acc_no={}".format(birth_date,acc_no))
+                            cur.execute("update clients set birth_date='{}' where acc_no={}".format(birth_date,acc_no))
                             conn.commit()
                         except mysql.connector.Error as err:
                             print(err.msg)
@@ -306,7 +306,7 @@ def f2():
             else:
                 if age(birth_date)-age(add_date)>=20:
                     try:
-                        cur.execute("update Clients set add_date='{}' where acc_no={}".format(add_date,acc_no))
+                        cur.execute("update clients set add_date='{}' where acc_no={}".format(add_date,acc_no))
                         conn.commit()
                     except mysql.connector.Error as err:
                         print(err.msg)

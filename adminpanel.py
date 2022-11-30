@@ -2,6 +2,7 @@ import admin.addmanager
 import admin.delmanager
 import admin.editmanager
 import admin.showmanagers
+import admin.frozeclient
 import manager.addclient
 import manager.delclient
 import manager.editclient
@@ -22,6 +23,7 @@ def ap():
         print("6. Del a client")
         print("7. Edit a client")
         print("8. Show a client table")
+        print("9. Block a client")
         print("\nInput 0 to quit.")
         a=input("Enter choice: ")
         if a=='1':
@@ -40,6 +42,8 @@ def ap():
             manager.editclient.ap3()
         elif a=='8':
             manager.showclient.ap4()
+        elif a=='9':
+            admin.frozeclient.ap5()
         elif a=='0':
             print("Quit Admin Panel.")
             break

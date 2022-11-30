@@ -12,7 +12,7 @@ conn=None
 acc_no=0
 add_date=None
 birth_date=None
-def ap3():
+def ap5():
     global cur
     global conn
     cred = open("cred.dat","rb")

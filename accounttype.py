@@ -70,9 +70,10 @@ def acctype():
                         if row[6] == cli_email and row[8] == cli_passwd:
                             if row[12]:
                                 print("Your account is frozen!")
-                            print("\nWelcome", row[1], "!")
-                            client_no = row[0]
-                            clientpanel.ap()
+                            else:
+                                print("\nWelcome", row[1], "!")
+                                client_no = row[0]
+                                clientpanel.ap()
                         else:
                             print("\nWrong email or password!")
                     break

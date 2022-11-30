@@ -37,7 +37,8 @@ TABLES['clients'] = (
     "  `passwd` varchar(8) NOT NULL,"
     "  `acc_creation_date` DATE NULL DEFAULT (CURRENT_DATE),"
     "  PRIMARY KEY (`acc_no`),"
-    "  FOREIGN KEY(`acc_no`) REFERENCES managers(manager_no)"
+    "  FOREIGN KEY(`acc_no`) REFERENCES managers(manager_no),"
+    "  `is_frozen` boolean DEFAULT false"
     ") "
 )
 
